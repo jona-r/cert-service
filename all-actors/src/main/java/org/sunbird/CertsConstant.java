@@ -164,6 +164,11 @@ public class CertsConstant {
         return getPropertyFromEnv(JsonKey.PRIVATE_CLOUD_STORAGE_KEY);
     }
 
+
+    public String getCloudStorageEndpoint() {
+        return getPropertyFromEnv(JsonKey.CLOUD_STORAGE_ENDPOINT);
+    }
+
     public String getSignatoryExtensionUrl() {
         return String.format("%s/%s/%s", BASE_PATH, SIGNATORY_EXTENSION, "context.json");
     }
