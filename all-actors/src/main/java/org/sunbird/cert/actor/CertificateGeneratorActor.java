@@ -32,6 +32,7 @@ import org.sunbird.response.CertificateResponse;
 import org.sunbird.response.CertificateResponseV1;
 import org.sunbird.response.Response;
 import scala.Some;
+import scala.Option;
 
 import java.io.File;
 import java.io.IOException;
@@ -103,7 +104,14 @@ public class CertificateGeneratorActor extends BaseActor {
 
 
     private BaseStorageService getStorageService() {
-        StorageConfig storageConfig = new StorageConfig(certVar.getCloudStorageType(), certVar.getCloudStorageKey(), certVar.getCloudStorageSecret());
+        StorageConfig storageConfig;
+        String storageKey = certVar.getCloudStorageKey();;
+        String storageSecret = certVar.getCloudStorageSecret();
+        Option<String> storageEndpoint;
+        Option<String> storageRegion;
+        storageEndpoint = Option.apply(certVar.getCloudStorageEndpoint());
+        storageRegion = Option.apply("");        
+        storageConfig = new StorageConfig(certVar.getCloudStorageType(), storageKey, storageSecret,storageEndpoint,storageRegion);
         logger.info(null, "CertificateGeneratorActor:getStorageService:storage object formed: {}" ,storageConfig.toString());
         return StorageServiceFactory.getStorageService(storageConfig);
     }

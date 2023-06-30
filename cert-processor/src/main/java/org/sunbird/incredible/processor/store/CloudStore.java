@@ -7,7 +7,7 @@ import org.sunbird.cloud.storage.BaseStorageService;
 import org.sunbird.cloud.storage.exception.StorageServiceException;
 import org.sunbird.cloud.storage.factory.StorageConfig;
 import org.sunbird.cloud.storage.factory.StorageServiceFactory;
-
+import scala.Option;
 import java.io.File;
 
 public class CloudStore implements ICertStore {
@@ -56,8 +56,12 @@ public class CloudStore implements ICertStore {
         if (StringUtils.isNotBlank(storeConfig.getType())) {
             String storageKey = storeConfig.getAccount();
             String storageSecret = storeConfig.getKey();
-            StorageConfig storageConfig = new StorageConfig(storeConfig.getType(), storageKey, storageSecret);
-            logger.info("StorageParams:init:all storage params initialized for azure block");
+            Option<String> storageEndpoint;
+            Option<String> storageRegion;
+            storageEndpoint = Option.apply(storeConfig.getEndpoint());
+            storageRegion = Option.apply("");
+            StorageConfig storageConfig = new StorageConfig(storeConfig.getType(), storageKey, storageSecret,storageEndpoint,storageRegion);
+            logger.info("StorageParams:init:all storage params initialized for cloud block");
             storageService = StorageServiceFactory.getStorageService(storageConfig);
             cloudStorage = new CloudStorage(storageService);
         } else {

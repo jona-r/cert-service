@@ -26,6 +26,8 @@ public interface JsonKey {
     String CLOUD_UPLOAD_RETRY_COUNT = "CLOUD_UPLOAD_RETRY_COUNT";
     String PRIVATE_CLOUD_STORAGE_SECRET = "PRIVATE_CLOUD_STORAGE_SECRET";
     String PRIVATE_CLOUD_STORAGE_KEY = "PRIVATE_CLOUD_STORAGE_KEY";
+
+    String CLOUD_STORAGE_ENDPOINT = "CLOUD_STORAGE_ENDPOINT";
     String GCP="gcloud";
     String SLUG ="sunbird_cert_slug";
     String ACCESS_CODE_LENGTH = "ACCESS_CODE_LENGTH";
@@ -122,4 +124,6 @@ public interface JsonKey {
     String QRCODE_IMAGE = "qrCodeImage";
     String EXPIRY_DATE = "expiryDate";
     String ISSUER_NAME = "issuerName";
+
+
 }
